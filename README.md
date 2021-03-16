@@ -15,7 +15,7 @@ Move into the cloned repository:
 cd docker-smashing
 ```
 
-Create environment variables to match with your information:
+Create .env file and update environment variables to match with your information:
 ```
 (nano, vim) .env:
 
