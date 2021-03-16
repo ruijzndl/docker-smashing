@@ -7,37 +7,26 @@ declare () {
 }
 
 update_config () {
-  auth_token=$(cat .env | grep SMASHING_KEY | cut -d'=' -f2 | tr -d "\n")
-  sed -i "s/YOUR_AUTH_TOKEN/$auth_token/" ./smashing/config.ru
+  if [ -f ".env" ]
+  then
+      auth_token=$(cat .env | grep SMASHING_KEY | cut -d'=' -f2 | tr -d "\n")
+  else
+      auth_token=${SMASHING_KEY}
+  fi
+  sed -i "s/^.*set :auth_token, '.*'$/  set :auth_token, \'$auth_token\'/" ./smashing/config.ru
 }
 
-update_twitter () {
-  twitter_consumer_key=$(cat .env | grep TWITTER_CONSUMER_KEY | cut -d'=' -f2 | tr -d "\n")
-  twitter_consumer_secret=$(cat .env | grep TWITTER_CONSUMER_SECRET | cut -d'=' -f2 | tr -d "\n")
-  twitter_access_token=$(cat .env | grep TWITTER_ACCESS_TOKEN | cut -d'=' -f2 | tr -d "\n")
-  twitter_token_secret=$(cat .env | grep TWITTER_TOKEN_SECRET | cut -d'=' -f2 | tr -d "\n")
-
-  sed -i "s/YOUR_CONSUMER_KEY/$twitter_consumer_key/" ./smashing/jobs/twitter.rb
-  sed -i "s/YOUR_CONSUMER_SECRET/$twitter_consumer_secret/" ./smashing/jobs/twitter.rb
-  sed -i "s/YOUR_OAUTH_TOKEN/$twitter_access_token/" ./smashing/jobs/twitter.rb
-  sed -i "s/YOUR_OAUTH_SECRET/$twitter_token_secret/" ./smashing/jobs/twitter.rb
-}
 update () {
-  for file in \
-    ./smashing/config.ru \
-    ./smashing/jobs/twitter.rb ; do
-
-    if [[ ! -f "$file" ]] ;
-    then
-      echo "$file not found. Exiting."
-      exit 1
-    fi
-  done
+  file="./smashing/config.ru"
+  if [ ! -f "$file" ] ;
+  then
+    echo "$file not found. Exiting."
+    exit 1
+  fi
 
   update_config
-  update_twitter
 
-  if [[ "$?" == 0 ]] ;
+  if [ "$?" = "0" ] ;
   then
     echo "Files updated."
   fi

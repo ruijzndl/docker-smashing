@@ -12,6 +12,12 @@ RUN bundle install --jobs 80
 COPY entrypoint.sh /usr/bin/
 RUN chmod +x /usr/bin/entrypoint.sh
 
+COPY entrypoint.sh /usr/bin/
+RUN chmod +x /usr/bin/entrypoint.sh
+
+COPY inject-secrets.sh /usr/bin/
+RUN chmod +x /usr/bin/inject-secrets.sh
+
 ENTRYPOINT ["entrypoint.sh"]
 EXPOSE 3030
 

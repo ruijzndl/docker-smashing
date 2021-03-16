@@ -1,7 +1,7 @@
 # docker-smashing
 
 This sample project contains the minimal structure for a Ruby Smashing application
-deployment.
+deployment. Based on the work done in [this repo](https://github.com/atilleh/docker-smashing)
 
 ## How to use
 
@@ -29,22 +29,12 @@ Launch Smashing to check if everything is fine:
 docker-compose up
 ```
 
-## Make Twitter module work
-
-Update the newly created `smashing/jobs/twitter.rb` file to match Twitter parameters with :
-```ruby
-twitter = Twitter::REST::Client.new do |config|
-  config.consumer_key = ENV['TWITTER_CONSUMER_KEY']
-  config.consumer_secret = ENV['TWITTER_CONSUMER_SECRET']
-  config.access_token = ENV['TWITTER_ACCESS_TOKEN']
-  config.access_token_secret = ENV['TWITTER_TOKEN_SECRET']
-end
-```
 
 ## Set the Smashing API key
 
-Update `smashing/config.ru` file and set `:auth_token` :
-
-```ruby
-set :auth_token, ENV['SMASHING_KEY']
-```
+Update SMASHING_KEY API key in .env file or as SMASHING_KEY environment variable:
+When done in .env file, docker-compose file will take care of handing over the
+API key to the smashing container. When used as a standalone docker container
+the environment variable SMASHING_KEY needs to be set in for the container.
+The inject-secrets.sh scrip is part of the container startup procedure and will
+inject the API key into the confg.ru folder of the smashing container.
