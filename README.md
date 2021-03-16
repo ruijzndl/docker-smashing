@@ -3,20 +3,28 @@
 This sample project contains the minimal structure for a Ruby Smashing application
 deployment. Based on the work done in [this repo](https://github.com/atilleh/docker-smashing)
 
+
 ## How to use
 
 Clone the repository:
 ```
-git clone git@github.com:atilleh/docker-smashing.git docker-smashing
+git clone git@github.com:ruijzndl/docker-smashing.git docker-smashing
 ```
 Move into the cloned repository:
 ```
 cd docker-smashing
 ```
 
-Update environment variables to match with your information:
+Create environment variables to match with your information:
 ```
-(nano, vim) .env
+(nano, vim) .env:
+
+
+SMASHING_KEY=9876-543210-2
+AWS_DEFAULT_REGION=eu-west-1
+AWS_ACCESS_KEY_ID=AKIRVSPIMUUNBCOVIDPNA
+AWS_SECRET_ACCESS_KEY=yNgSendVzLERincI7/thelH2WkClownyUWoahR
+
 ```
 
 Create the basic Smashing directories structure:
