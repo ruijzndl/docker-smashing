@@ -12,11 +12,13 @@ services:
       - ./smashing:/smashing
     networks:
       - frontend
-    environment:
-      SMASHING_KEY: ${SMASHING_KEY}
-      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
-      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
-      AWS_DEFAULT_REGION: ${AWS_DEFAULT_REGION}
+    env_file:
+      - ./.env
+    # environment:
+    #   - SMASHING_KEY=${SMASHING_KEY}
+    #   - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+    #   - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+    #   - AWS_DEFAULT_REGION=${AWS_DEFAULT_REGION}
       
 networks:
   frontend:

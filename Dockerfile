@@ -1,23 +1,18 @@
 FROM ruby:2.6
-RUN mkdir /smashing
 
 RUN apt-get update && \
     apt-get upgrade -yq && \
-    apt-get install -yq nodejs
+    apt-get install -yq nodejs fortune
 
-COPY Gemfile /smashing/Gemfile
+RUN mkdir /smashing
 WORKDIR /smashing
+COPY Gemfile /smashing/Gemfile
 
 RUN bundle install --jobs 80
 COPY entrypoint.sh /usr/bin/
 RUN chmod +x /usr/bin/entrypoint.sh
 
-COPY entrypoint.sh /usr/bin/
-RUN chmod +x /usr/bin/entrypoint.sh
-
-COPY inject-secrets.sh /usr/bin/
-RUN chmod +x /usr/bin/inject-secrets.sh
-
+ENV PATH=$PATH:/usr/games
 ENTRYPOINT ["entrypoint.sh"]
 EXPOSE 3030
 

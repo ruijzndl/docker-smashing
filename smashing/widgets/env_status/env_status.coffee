@@ -1,0 +1,1 @@
+class Dashing.EnvStatus extends Dashing.Widget

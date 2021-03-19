@@ -1,0 +1,35 @@
+<% content_for :title do %>Cesar cloud status dashboard<% end %>
+<div class="gridster">
+  <ul>
+    <li data-row="1" data-col="1" data-sizex="2" data-sizey="1">
+      <div data-id="welcome" data-view="Text" data-title="Cesar-AWS" data-text="Environment status"></div>
+    </li>
+
+    <li data-row="1" data-col="2" data-sizex="1" data-sizey="1">
+      <div data-id="fortune" data-view="Fortune" data-title="" data-text="" style="background-color:#ff9618"></div>
+    </li>
+
+    <li data-row="1" data-col="1" data-sizex="1" data-sizey="1">
+      <div data-view="Clock" style="background-color:#ff9618"></div>
+      <i class="far fa-clock icon-background"></i>
+    </li>
+
+    <li data-row="2" data-col="1" data-sizex="1" data-sizey="1">
+      <div data-id="cesar-develop-eu" data-view="EnvStatus" data-title="cesar-develop-eu" data-subtitle="free"></div>
+    </li>
+
+    <li data-row="2" data-col="1" data-sizex="1" data-sizey="1">
+      <div data-id="cesar-prod-eu" data-view="EnvStatus" data-title="cesar-prod-eu" data-subtitle="free"></div>
+    </li>
+
+    <li data-row="2" data-col="1" data-sizex="1" data-sizey="1">
+      <div data-id="cesar-test-eu" data-view="EnvStatus" data-title="cesar-test-eu" data-subtitle="free"></div>
+    </li>
+
+    <li data-row="2" data-col="1" data-sizex="1" data-sizey="1">
+      <div data-id="cesar-kodex-150-eu" data-view="EnvStatus" data-title="cesar-kodex-150-eu" data-subtitle="free"></div>
+    </li>
+
+  </ul>
+  <center><div style="font-size: 12px">Try this to reload the page: curl -d '{ "auth_token": "YOUR_AUTH_TOKEN", "event": "reload" }' http://<%=request.host%>:<%=request.port%>/dashboards<%=request.path%></div></center>
+</div>
